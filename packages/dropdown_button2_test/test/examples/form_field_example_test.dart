@@ -8,6 +8,8 @@ import 'test_app.dart';
 void main() {
   runGoldenTests(
     'FormField Example',
+    // NOTE: InputDecorator's contentPadding.vertical is incorrect on desktop
+    // until https://github.com/flutter/flutter/issues/166201 is fixed
     (WidgetTester tester, ViewVariant variant) async {
       // GIVEN
       await tester.pumpTestApp(const FormFieldExample());
@@ -15,8 +17,7 @@ void main() {
       // THEN
       await expectLater(
         find.byType(TestApp),
-        matchesGoldenFile(
-            'goldens/form_field_example/${variant.name}_closed_menu.png'),
+        matchesGoldenFile('goldens/form_field_example/${variant.name}_closed_menu.png'),
       );
 
       // GIVEN
@@ -27,8 +28,7 @@ void main() {
       // THEN
       await expectLater(
         find.byType(TestApp),
-        matchesGoldenFile(
-            'goldens/form_field_example/${variant.name}_open_menu.png'),
+        matchesGoldenFile('goldens/form_field_example/${variant.name}_open_menu.png'),
       );
     },
   );
